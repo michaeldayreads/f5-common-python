@@ -23,6 +23,7 @@ install:
 script:
   - tox -e flake
   - tox -e unit
+  - if [ "$COVERALLS_REPO_TOKEN" != "" ]; then tox -e coverage; fi
   - python setup.py sdist
   - ${DIST_REPO}/scripts/build_pkgs.py  # ubuntu;14.04,15.01 # basically <os>;<version> !! overwrites !!
   - sudo chown -R travis:travis ${DIST_REPO}/rpms/build
